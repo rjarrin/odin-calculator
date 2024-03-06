@@ -100,6 +100,7 @@ function handleButtonClick(button) {
         userInput += button;
         //result = calculate(userInput);
         updateDisplay();
+        multiDecimals = false;
         userInput = "";
     } else if (button === "C") {
         // Clear display
@@ -134,10 +135,31 @@ function handleButtonClick(button) {
                 userInput += "0";
             }
         }
+        else if (userInput[userInput.length - 1] === ".") {
+            userInput += "0";
+        }
         // Append the operator to the expression
         userInput += button;
         updateDisplay();
         multiDecimals = false;
+    } else if (button === "←" && userInput !== "") {
+        // Get the last character from the user input
+        let lastCharacter = userInput.charAt(userInput.length - 1);
+        
+        // Decimal functionality
+        if (lastCharacter === "." ) {
+            multiDecimals = false;
+        }
+        else if (['+', '-', '*', '/'].includes(lastCharacter)) {
+            let checker = tokenize(userInput);
+            if (checker[checker.length - 2].includes(".")) {
+                multiDecimals = true;
+            }
+            else multiDecimals = false;
+        }
+        // Remove the last charcter from the user input
+        userInput = userInput.slice(0, -1);
+        updateDisplay();
     }
     else {
         userInput += button;
