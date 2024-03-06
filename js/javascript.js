@@ -93,10 +93,15 @@ function calculate(operator, a, b) {
 
 function handleButtonClick(button) {
     if (button === "=") {
+        if (userInput === "") {
+            userInput = result;
+        } else {
+            result = parse(tokenize(userInput));
+        }
         // Evaluate the user expression
-        console.log("USER INPUT: "+ multiDecimals);
+        console.log("USER INPUT: "+ userInput);
 
-        result = parse(tokenize(userInput));
+        
         userInput += button;
         //result = calculate(userInput);
         updateDisplay();
@@ -142,24 +147,26 @@ function handleButtonClick(button) {
         userInput += button;
         updateDisplay();
         multiDecimals = false;
-    } else if (button === "←" && userInput !== "") {
-        // Get the last character from the user input
-        let lastCharacter = userInput.charAt(userInput.length - 1);
-        
-        // Decimal functionality
-        if (lastCharacter === "." ) {
-            multiDecimals = false;
-        }
-        else if (['+', '-', '*', '/'].includes(lastCharacter)) {
-            let checker = tokenize(userInput);
-            if (checker[checker.length - 2].includes(".")) {
-                multiDecimals = true;
+    } else if (button === "←") {
+        if (userInput !== "") {
+            // Get the last character from the user input
+            let lastCharacter = userInput.charAt(userInput.length - 1);
+            
+            // Decimal functionality
+            if (lastCharacter === "." ) {
+                multiDecimals = false;
             }
-            else multiDecimals = false;
-        }
-        // Remove the last charcter from the user input
-        userInput = userInput.slice(0, -1);
-        updateDisplay();
+            else if (['+', '-', '*', '/'].includes(lastCharacter)) {
+                let checker = tokenize(userInput);
+                if (checker[checker.length - 2].includes(".")) {
+                    multiDecimals = true;
+                }
+                else multiDecimals = false;
+            }
+            // Remove the last charcter from the user input
+            userInput = userInput.slice(0, -1);
+            updateDisplay();
+        } 
     }
     else {
         userInput += button;
