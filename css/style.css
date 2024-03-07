@@ -96,3 +96,16 @@ body {
     color: green;
     margin-top: 7%;
 }
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0f0e0e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8rem;
+    font-family: "Comfortaa", sans-serif;
+}

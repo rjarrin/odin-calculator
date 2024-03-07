@@ -106,9 +106,14 @@ function calculate(operator, a, b) {
     }
 
     // Display correct number of decimal places from arithmetic calculation
-    const decimalPlacesA = (a.toString().split('.')[1] || '').length;
-    const decimalPlacesB = (b.toString().split('.')[1] || '').length; 
-    const maxDecimals = Math.max(decimalPlacesA, decimalPlacesB);
+    try {
+        const decimalPlacesA = (a.toString().split('.')[1] || '').length;
+        const decimalPlacesB = (b.toString().split('.')[1] || '').length; 
+        const maxDecimals = Math.max(decimalPlacesA, decimalPlacesB);
+    } catch (error) {
+        maxDecimals = 0;
+    }
+    
 
     // Round the result to the maximum number of decimal places
     return parseFloat(result.toFixed(maxDecimals));
@@ -203,4 +208,38 @@ function handleButtonClick(button) {
     }
 }
 
+const keyboardMap = {
+    '0': '0',
+    '1': '1',
+    '2': '2',
+    '3': '3',
+    '4': '4',
+    '5': '5',
+    '6': '6',
+    '7': '7',
+    '8': '8',
+    '9': '9',
+    '+': '+',
+    '-': '-',
+    '*': '*',
+    '/': '/',
+    '.': '.',
+    'Enter': '=',
+    'Backspace': '←',
+    'Space': 'C',
+    '%': '%'
+};
 
+window.addEventListener('keydown', function(event) {
+    const button = keyboardMap[event.key];
+    if (button) {
+        // if (event.key === 'Enter') {
+        //     event.preventDefault();
+        // }
+        if (['Enter', 'Backspace', 'Space', '+', '-'].includes(event.key)) {
+            event.preventDefault();
+        }
+        
+        handleButtonClick(button);
+    }
+});
