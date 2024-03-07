@@ -92,6 +92,12 @@ function calculate(operator, a, b) {
 }
 
 function handleButtonClick(button) {
+    // Consider a maximum input length
+    const maxLength = 19;
+    if (userInput.length > maxLength && !['C', '%', '=', '←'].includes(button)) {
+        alert("Input limit reached!");
+        return;
+    }
     if (button === "=") {
         if (userInput === "") {
             userInput = result;
