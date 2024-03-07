@@ -10,7 +10,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
-    background-color: #251d1d;
+    background-color: #0f0e0e;
     width: 100%;
     max-width: 400px;
 }
@@ -40,10 +40,47 @@ body {
     flex: 1 0 calc(25% - 10px);
     margin: 5px;
     height: 50px;
+    background-color: #362c2c89;
+    color: #fff;
+    font-size: 20px;
 }
 
 .buttons button.clear {
     flex: 2 0 calc(50% - 10px);
+    background-color: #75418a;
+    color: #e38dc8;
+}
+
+.buttons button.clear:hover {
+    background-color: #914caf;
+}
+
+.buttons button.equals {
+    background-color: #00407c;
+    color: #a5aef59d;
+}
+
+.buttons button.equals:hover {
+    background-color: #02509a;
+}
+
+.buttons button.operators {
+    background-color: #575364;
+    color: #cac8cf;
+}
+
+.buttons button.operators:hover {
+    background-color: #787388;
+}
+
+.calculator-button {
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.calculator-button:hover {
+    background-color: #545554;
+    transform: scale(1.1);
 }
 
 .display p {

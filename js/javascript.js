@@ -10,9 +10,14 @@ const buttons = ['C', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2'
 buttons.forEach(button => {
     const buttonElement = document.createElement('button');
     buttonElement.textContent = button;
+    buttonElement.classList.add("calculator-button");
     buttonElement.addEventListener('click', () => handleButtonClick(button));
     if (button === "C") {
         buttonElement.classList.add("clear");
+    } else if (button === "=") {
+        buttonElement.classList.add("equals");
+    } else if (['+', '-', '*', '/', '%'].includes(button)) {
+        buttonElement.classList.add("operators");
     }
     buttonsContainer.appendChild(buttonElement);
 });
@@ -100,7 +105,7 @@ function calculate(operator, a, b) {
             result = 'NaN';
     }
 
-    // Display correct number of decimal places from arithimetic calculation
+    // Display correct number of decimal places from arithmetic calculation
     const decimalPlacesA = (a.toString().split('.')[1] || '').length;
     const decimalPlacesB = (b.toString().split('.')[1] || '').length; 
     const maxDecimals = Math.max(decimalPlacesA, decimalPlacesB);
