@@ -51,6 +51,16 @@ body {
     color: #e38dc8;
 }
 
+.calculator-button {
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.calculator-button:hover {
+    background-color: #545554;
+    transform: scale(1.1);
+}
+
 .buttons button.clear:hover {
     background-color: #914caf;
 }
@@ -71,16 +81,6 @@ body {
 
 .buttons button.operators:hover {
     background-color: #787388;
-}
-
-.calculator-button {
-    transition: all 0.3s ease;
-    transform: scale(1);
-}
-
-.calculator-button:hover {
-    background-color: #545554;
-    transform: scale(1.1);
 }
 
 .display p {
