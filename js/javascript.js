@@ -82,13 +82,31 @@ function tokenize(input) {
 }
 
 function calculate(operator, a, b) {
+    let result;
     switch (operator) {
-        case '+': return a + b;
-        case '-': return a - b;
-        case '*': return a * b;
-        case '/': return b === 0 ? 'NaN' : a / b;
-        default: return 'NaN';
+        case '+': 
+            result = a + b;
+            break;
+        case '-': 
+            result = a - b;
+            break;
+        case '*': 
+            result = a * b;
+            break;
+        case '/': 
+            result = b === 0 ? 'NaN' : a / b;
+            break;
+        default:
+            result = 'NaN';
     }
+
+    // Display correct number of decimal places from arithimetic calculation
+    const decimalPlacesA = (a.toString().split('.')[1] || '').length;
+    const decimalPlacesB = (b.toString().split('.')[1] || '').length; 
+    const maxDecimals = Math.max(decimalPlacesA, decimalPlacesB);
+
+    // Round the result to the maximum number of decimal places
+    return parseFloat(result.toFixed(maxDecimals));
 }
 
 function handleButtonClick(button) {
